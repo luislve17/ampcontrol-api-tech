@@ -45,6 +45,8 @@ INSTALLED_APPS = [
     'rest_framework',
 
     'utils',
+    'vehicles',
+    'chargespot',
 ]
 
 MIDDLEWARE = [
