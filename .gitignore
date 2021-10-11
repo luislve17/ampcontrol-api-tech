@@ -1,0 +1,92 @@
+# See http://help.github.com/ignore-files/ for more about ignoring files.
+
+# compiled output
+/dist
+/dist-server
+/tmp
+/out-tsc
+/django/frontend/build
+/django/backend/static
+
+# dependencies
+virtual_env/
+node_modules/
+/django/frontend/node_modules
+
+# IDEs and editors
+.idea
+.project
+.classpath
+.c9/
+*.launch
+.settings/
+*.sublime-workspace
+
+# IDE - VSCode
+/.venv
+.vscode/*
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+
+# misc
+/.sass-cache
+/connect.lock
+/coverage
+/libpeerconnection.log
+npm-debug.log
+yarn-error.log
+testem.log
+/typings
+
+# python
+*.mo
+*.py[co]
+__pycache__/
+
+# System Files
+.DS_Store
+Thumbs.db
+*~
+
+# Offline docker images
+genesis-nginx
+genesis-node
+genesis-python
+genesis-corenlp
+genesis-django-worker
+genesis-elasticsearch
+
+# SQLite database
+*.db
+
+# CeleryBeat
+*.pid
+
+# Files generated front
+package-lock.json
+
+# Vim stuff
+# Swap
+[._]*.s[a-v][a-z]
+[._]*.sw[a-p]
+[._]s[a-rt-v][a-z]
+[._]ss[a-gi-z]
+[._]sw[a-p]
+
+# Session
+Session.vim
+
+# Temporary
+.netrwhist
+*~
+*.cki
+
+# Auto-generated tag files
+tags
+
+# Persistent undo
+[._]*.un~
+
+db.sqlite3*
