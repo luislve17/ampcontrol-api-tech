@@ -1,8 +1,10 @@
+from haversine import haversine, Unit
 from math import ceil
 from datetime import date
 from dateutil.relativedelta import relativedelta
 
-today = date.today()
+from .models import Weight
+
 def calculate_performance(vehicle, chargespot):
     battery_age_perf = lambda age_in_years: max([0, -0.3*age_in_years + 1])
     chargespot_time_since_maintenance_perf = lambda last_maintenance_in_months: max([0, -0.3*ceil(0.5*last_maintenance_in_months) + 1.3])
@@ -14,12 +16,31 @@ def calculate_performance(vehicle, chargespot):
     chargespot_elapsed_months_since_maintenance = time_since_last_maintenance.years*12 + time_since_last_maintenance.months
     car_battery_performance = battery_age_perf(car_battery_years)
     chargespot_performance = chargespot_time_since_maintenance_perf(chargespot_elapsed_months_since_maintenance)
-    final_performance = (car_battery_performance + chargespot_performance) / 2
+    weight_reference = get_performance_weight(chargespot)
+    weight = weight_reference.vehicle_performance_weight if weight_reference else 0.5
+    overall_performance = ((weight)*car_battery_performance + (1-weight)*chargespot_performance) / 2
+
     return {
+        'used_weight': {"from":weight_reference.name, "vehicle_performance_weight":weight},
         'car_battery':car_battery_performance,
         'chargespot': chargespot_performance,
-        'final': final_performance
+        'overall': overall_performance
     }
+
+def get_performance_weight(chargespot):
+    available_weights = Weight.objects.all()
+    min_distance = float('inf')
+    weight_reference = None
+
+    for weight in available_weights:
+        reference_location = (weight.lat, weight.lng)
+        charginspot_location = (chargespot.lat, chargespot.lng)
+        distance = haversine(charginspot_location, reference_location, unit=Unit.KILOMETERS)
+        if distance < min_distance:
+            min_distance = distance
+            weight_reference = weight
+
+    return weight_reference
 
 def request_contains(request, expected_params, by='query_params'):
     if by == 'query_params':

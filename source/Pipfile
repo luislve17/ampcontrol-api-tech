@@ -8,6 +8,7 @@ django = "*"
 gunicorn = "*"
 djangorestframework = "*"
 python-dateutil = "*"
+haversine = "*"
 
 [dev-packages]
 

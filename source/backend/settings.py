@@ -47,6 +47,7 @@ INSTALLED_APPS = [
     'utils',
     'vehicles',
     'chargespot',
+    'performance',
 ]
 
 MIDDLEWARE = [
