@@ -56,21 +56,21 @@ def get_charge_performance(request):
 
 def post_performance_calc(request):
     # Ensure request contains needed params
-    expected_params = ['weight_id', 'vehicle_performance_weight', 'lat', 'lng']
+    expected_params = ['weight_name', 'vehicle_performance_weight', 'lat', 'lng']
     if not request_contains(request, expected_params, by="data"):
         response_obj = {"error": f"Missing params in query. Expected {expected_params}"}
         response_code = status.HTTP_400_BAD_REQUEST
         return Response(response_obj, status=response_code)
     
     # If so, get its values
-    weight_id = request.data.get('weight_id')
+    weight_name = request.data.get('weight_name')
     vehicle_performance_weight = request.data.get('vehicle_performance_weight')
     lat, lng = request.data.get('lat'), request.data.get('lng')
 
     
-    # Search for matching objects from id's
+    # Search for matching objects from id's to update/create
     try:
-        weight, created = Weight.objects.update_or_create(id=weight_id, defaults={
+        weight, created = Weight.objects.update_or_create(name=weight_name, defaults={
             "vehicle_performance_weight": vehicle_performance_weight,
             "lat":lat,
             "lng":lng})

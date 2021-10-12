@@ -31,6 +31,7 @@ DEBUG = True
 
 ALLOWED_HOSTS = ['127.0.0.1', 'localhost', 'melp-backend-exercise.herokuapp.com']
 
+DRF_API_LOGGER_DATABASE = True
 
 # Application definition
 
@@ -43,6 +44,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
 
     'rest_framework',
+    'drf_api_logger',
 
     'utils',
     'vehicles',
@@ -58,6 +60,8 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+
+    'drf_api_logger.middleware.api_logger_middleware.APILoggerMiddleware', # Add here
 ]
 
 ROOT_URLCONF = 'backend.urls'

@@ -9,6 +9,7 @@ gunicorn = "*"
 djangorestframework = "*"
 python-dateutil = "*"
 haversine = "*"
+drf-api-logger = "*"
 
 [dev-packages]
 
