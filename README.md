@@ -125,8 +125,8 @@ Assuming you already did `pipenv install` and `pipenv shell`, for new apps creat
 
 ## Running Tests
 
-To run tests, run the following command
+Unittest are already configured on build-up for the project. Checking `start.sh` at root path of the project, the line handling the tests simply runs `pytest`.
 
-```bash
-  npm run test
-```
+Now, for specific testing, you would need to enter into the docker instance and run specific pytest commands
+
+For **all** tests, the project is already configured with pytest-django package and expects to follow the naming convention defined in `pytest.ini`, and coming from the `source/backend/tests/` folder.

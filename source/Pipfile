@@ -10,6 +10,7 @@ djangorestframework = "*"
 python-dateutil = "*"
 haversine = "*"
 drf-api-logger = "*"
+pytest-django = "*"
 
 [dev-packages]
 
