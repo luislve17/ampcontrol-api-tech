@@ -5,13 +5,10 @@
 /dist-server
 /tmp
 /out-tsc
-/django/frontend/build
-/django/backend/static
 
 # dependencies
 virtual_env/
 node_modules/
-/django/frontend/node_modules
 
 # IDEs and editors
 .idea
@@ -49,14 +46,6 @@ __pycache__/
 .DS_Store
 Thumbs.db
 *~
-
-# Offline docker images
-genesis-nginx
-genesis-node
-genesis-python
-genesis-corenlp
-genesis-django-worker
-genesis-elasticsearch
 
 # SQLite database
 *.db
